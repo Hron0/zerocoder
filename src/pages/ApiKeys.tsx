@@ -3,6 +3,14 @@ import Sidebar from '../Components/Nav/Sidebar'
 import { Button } from '@/Components/UI/button'
 import { Badge } from '@/Components/UI/badge'
 import plus from '../assets/plus.svg'
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/Components/UI/table'
 import ProfileLayout from '@/Components/Layouts/ProfileLayout'
 
 const ApiKeys = () => {
@@ -19,19 +27,25 @@ const ApiKeys = () => {
                             вашего приложения и не публикуйте в открытом доступе. В случае утечки ключа API,
                             аннулируйте его как можно скорее. С нашей стороны мы так же оставляем за собой право
                             аннулировать ключи API в случае нарушения условий использования или обнаружения утечки.</h4>
-                        <table className='w-full text-left h-20'>
-                            <tr className='border-b-2 border-secondaryB h-8'>
-                                <td className='pr-8'><h4 className='font-semibold'>Ключ</h4></td>
-                                <td className='pr-8'><h4 className='font-semibold'>Создан</h4></td>
-                                <td className='pr-8'><h4 className='font-semibold col-span-2'>Последний вызов</h4></td>
-                            </tr>
-                            <tr className='border-b-2 border-secondaryB h-8 mt-8'>
-                                <td className='pr-8'>sk-...123</td>
-                                <td className='pr-8'>date</td>
-                                <td className='pr-8'>Статус</td>
-                                <td className='pr-8 text-right'>Помойка</td>
-                            </tr>
-                        </table>
+
+                        <Table className='w-full relative border-b-[1px]'>
+                            <TableHeader>
+                                <TableRow className='w-full'>
+                                    <TableHead className="w-44">Ключ</TableHead>
+                                    <TableHead className='w-44'>Создан</TableHead>
+                                    <TableHead className='w-44'>Последний вызов</TableHead>
+                                    <TableHead className="text-right"></TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell className="font-medium">sk-..123</TableCell>
+                                    <TableCell>24.01.2222</TableCell>
+                                    <TableCell>Никогда</TableCell>
+                                    <TableCell className="text-right">Помойка</TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
 
                         <Button variant="destructive">
                             <img src={plus} alt="+" width={24} /> <span>Создать новый ключ API</span>
@@ -46,7 +60,7 @@ const ApiKeys = () => {
                     </div>
 
                 </div>
-            </ProfileLayout>
+            </ProfileLayout >
         </>
     )
 }
