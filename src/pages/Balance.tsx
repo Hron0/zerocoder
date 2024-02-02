@@ -16,7 +16,7 @@ const Balance = () => {
             <ProfileLayout>
                 <div className="w-full h-full flex flex-col items-center pt-16 px-4 lg:px-0">
                     <div className='flex flex-col items-start gap-10 w-full md:w-1/2 2xl:w-[60%] relative'>
-                        <h1 className='text-xl lg:text-5xl font-medium'>Аккаунт</h1>
+                        <h1 className='text-xl lg:text-5xl font-medium'>Текущий баланс</h1>
                         <div className='flex flex-col items-start gap-5 w-full md:w-[75%]'>
                             <BalanceDialog  btn='Пополнить' plc='0,00 Р'/>
                         </div>

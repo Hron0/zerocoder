@@ -2,7 +2,6 @@ import React from 'react'
 import Sidebar from '../Components/Nav/Sidebar'
 import { Button } from '@/Components/UI/button'
 import { Badge } from '@/Components/UI/badge'
-import plus from '../assets/plus.svg'
 import {
     Table,
     TableBody,
@@ -12,13 +11,14 @@ import {
     TableRow,
 } from '@/Components/UI/table'
 import ProfileLayout from '@/Components/Layouts/ProfileLayout'
+import ApiKeyDialog from './../Components/UI/ApiKeyDialog';
 
 const ApiKeys = () => {
     return (
         <>
             <ProfileLayout>
                 <div className="w-full h-full flex flex-col items-center pt-24 px-4 lg:px-0">
-                    <div className='flex flex-col items-start gap-6 md:w-1/2 2xl:w-2/5 relative'>
+                    <div className='flex flex-col items-start gap-6 max-w-[100vw] px-2 md:w-1/2 2xl:w-2/5 relative'>
                         <h1 className='text-xl lg:text-5xl font-medium'>Ключи API</h1>
                         <h4 className='text-md lg:text-xl font-normal'>Ниже вы можете просмотреть ваши ключи API и аннулировать те из них, которые больше не
                             нужны или были скомпрометированы. Обратите внимание, что увидеть ключ целиком можно
@@ -47,9 +47,7 @@ const ApiKeys = () => {
                             </TableBody>
                         </Table>
 
-                        <Button variant="destructive">
-                            <img src={plus} alt="+" width={24} /> <span>Создать новый ключ API</span>
-                        </Button>
+                        <ApiKeyDialog />
 
                         <h4 className='text-md lg:text-xl font-normal'>
                             <Badge className='mr-3'>ВАЖНО!</Badge>
