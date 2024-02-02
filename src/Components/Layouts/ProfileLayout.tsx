@@ -14,13 +14,12 @@ const ProfileLayout = ({ children }: React.PropsWithChildren) => {
         }
     }, [])
 
-
     return (
-        <div className="md:w-screen md:h-screen flex flex-row bg-white">
+        <div className="md:w-screen md:h-screen flex flex-row bg-white overflow-x-hidden">
             <Sidebar sideBar={sideBar} setSideBar={setSideBar}/>
             <div className={cn(
                 sideBar ? 'bg-gray-400/75 lg:bg-transparent' : '',
-                'z-20'
+                'z-20 w-full'
             )}
                 onClick={(e) => {
                     if (mobile) {
