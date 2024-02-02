@@ -16,7 +16,6 @@ interface SidebarProps {
 
 
 const Sidebar = ({ sideBar, setSideBar }: SidebarProps) => {
-  /* Как запилю роуты доделаю */
 
   return (
     <>
