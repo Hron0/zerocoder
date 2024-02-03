@@ -6,6 +6,7 @@ import Rates from './pages/Rates';
 import Docs from './pages/Docs';
 import Login from './pages/auth/Login';
 import Users from './pages/admin/Users';
+import Home from './pages/Home';
 function App() {
 
   return (
@@ -16,11 +17,11 @@ function App() {
       
       <Route path='/rates' element={<Rates />}></Route>
       <Route path='/docs' element={<Docs />}></Route>
-      <Route path='/auth/login' element={<Login />}></Route>
 
+      <Route path='/auth/login' element={<Login />}></Route>
       <Route path='/admin/users' element={<Users />}></Route>
 
-      <Route path='/' element={<Users />}></Route>
+      <Route path='/' element={<Home />}></Route>
 
     </Routes>
   )

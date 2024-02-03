@@ -20,7 +20,7 @@ const Header = () => {
   const { width } = useWindowDimensions()
 
   const RawRoutes: RawRoutes[] = [
-    { route: '', name: 'Главная', },
+    { route: '/', name: 'Главная', },
     { route: '/profile/balance', name: 'Бизнес' },
     { route: '/rates', name: 'Тарифы' },
     { route: '/docs', name: 'Документация' },

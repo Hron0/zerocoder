@@ -22,7 +22,7 @@ interface sidebarRoutes {
 const Sidebar = ({ sideBar, setSideBar }: SidebarProps) => {
 
   const sidebarRoutes: sidebarRoutes[] = [
-    { route: '', img: home, name: 'Главная' },
+    { route: '/', img: home, name: 'Главная' },
     { route: '/profile', img: lock, name: 'Аккаунт' },
     { route: '/profile/apiKey', img: key, name: 'Ключи API' },
     { route: '/profile/balance', img: box, name: 'Биллинг' },
