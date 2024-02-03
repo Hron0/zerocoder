@@ -1,4 +1,4 @@
-export const codeExamples = {
+export const codeExamples: Record<string, string> = {
     first: `https://api.proxyapi.ri/openai`,
     second: 'Authorization: Bearer PROXY_API_KEY',
     third: `curl https://api.proxyapi.ru/openai/v1/chat/completions \\

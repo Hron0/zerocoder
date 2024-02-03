@@ -1,4 +1,3 @@
-import React from 'react'
 import ProfileLayout from '@/Components/Layouts/ProfileLayout'
 import { Input } from '@/Components/UI/input'
 import InputWLabel from '@/Components/UI/InputWLabel'

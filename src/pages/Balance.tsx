@@ -1,6 +1,5 @@
 import ProfileLayout from '@/Components/Layouts/ProfileLayout'
 import BalanceDialog from '@/Components/UI/BalanceDialog'
-import InputWBtn from '@/Components/UI/InputWBtn'
 import {
     Table,
     TableBody,
