@@ -2,15 +2,10 @@ import { Button } from '@/Components/UI/button';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import useWindowDimensions from '@/lib/windowD';
-import lock from '@/assets/lock.png'
+import menu from '@/assets/menu.svg'
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from '@/Components/UI/sheet'
 
@@ -59,11 +54,11 @@ const Header = () => {
           >Вход</Link> {/* Lol */}
         </div>
         :
-        <div className='flex items-start'>
+        <div className='flex self-start'>
           <Sheet>
             <SheetTrigger>
               <Button variant="ghost" className="z-[31]">
-                <img src={lock} alt="menu" />
+                <img src={menu} alt="menu" width={25}/>
               </Button>
             </SheetTrigger>
             <SheetContent side='left'>
