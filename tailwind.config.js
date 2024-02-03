@@ -32,6 +32,9 @@ module.exports = {
         'primaryW': "#FFFFFF",
         'secondaryA': '#FCFCFC',
         'secondaryB': "#F1F1F1",
+        'footerbg': '#111827',
+        'navhover': '#4CEF8E',
+        'footerTxt': '#6B7280',
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
