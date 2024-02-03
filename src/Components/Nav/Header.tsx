@@ -1,31 +1,94 @@
-import React from 'react'
 import { Button } from '@/Components/UI/button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { cn } from '@/lib/utils';
+import useWindowDimensions from '@/lib/windowD';
+import lock from '@/assets/lock.png'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/Components/UI/sheet'
 
-interface headerRoutes {
+interface RawRoutes {
   route: string,
   name: string;
 }
 
+
 const Header = () => {
-  const headerRoutes: headerRoutes[] = [
-    { route: '..', name: 'Главная' },
+  const location = useLocation()
+  const { width } = useWindowDimensions()
+
+  const RawRoutes: RawRoutes[] = [
+    { route: '..', name: 'Главная', },
     { route: '..', name: 'Бизнес' },
     { route: '/rates', name: 'Тарифы' },
     { route: '/docs', name: 'Документация' },
     { route: '..', name: 'Контакты' },
   ]
 
-  return (
-    <div className='flex flex-row justify-between bg-white px-[18%] py-3'>
-      <nav className='flex flex-row gap-4'>
-        {headerRoutes.map((data) =>
-          <Link to={data.route} className='h-fit'>{data.name}</Link>
-        )}
-      </nav>
+  const headerRoutes = RawRoutes.map((item) => ({
+    ...item,
+    highlight: location.pathname === item.route
+  }))
 
-      <Button variant="destructive">Вход</Button>
-    </div>
+  return (
+    <>
+      {width > 450 ?
+        <div className='w-full flex flex-row items-end justify-between bg-white px-[5%] lg:px-[18%] py-3'>
+          <nav className='flex flex-row gap-4'>
+            {headerRoutes.map((data) =>
+              <Link to={data.route} className={cn(
+                'h-fit hover:text-navhover hover:underline underline-offset-2 transition-colors',
+                data.highlight && 'text-navhover underline'
+              )} >{data.name}</Link>
+            )}
+          </nav>
+
+          <Link to={"/auth/login"}
+            className='inline-flex gap-2 items-center justify-center whitespace-nowrap text-sm 
+          ring-offset-background transition-colors focus-visible:outline-none 
+          focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none 
+          disabled:opacity-50 h-10 px-4 py-2
+          bg-destructive text-destructive-foreground hover:bg-green-500/50 rounded-sm font-semibold'
+          >Вход</Link> {/* Lol */}
+        </div>
+        :
+        <div className='flex items-start'>
+          <Sheet>
+            <SheetTrigger>
+              <Button variant="ghost" className="z-[31]">
+                <img src={lock} alt="menu" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side='left'>
+              <div className='max-w-[50%] flex flex-col items-start pt-6 gap-6'>
+                <Link to={"/auth/login"}
+                  className='inline-flex gap-2 items-center justify-center whitespace-nowrap text-sm 
+                ring-offset-background transition-colors focus-visible:outline-none 
+                focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none 
+                disabled:opacity-50 h-10 px-6 py-2
+                bg-destructive text-destructive-foreground hover:bg-green-500/50 rounded-sm font-semibold'
+                >Вход</Link>
+                <div className='flex flex-col items-start gap-4 w-full border-t-2'>
+                  {headerRoutes.map((data) =>
+                    <Link to={data.route} className={cn(
+                      'h-fit hover:text-navhover hover:underline underline-offset-2 transition-colors',
+                      data.highlight && 'text-navhover underline'
+                    )} >{data.name}</Link>
+                  )}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      }
+    </>
   )
 }
 
