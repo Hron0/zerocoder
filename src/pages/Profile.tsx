@@ -12,7 +12,7 @@ const Profile = () => {
                         <h1 className='text-xl lg:text-5xl font-medium'>Аккаунт</h1>
                         <form action="" className='flex flex-col items-start gap-5 w-full'>
                             <h1 className='text-lg lg:text-4xl font-medium'>Профиль</h1>
-                            <div className='flex flex-row gap-6 w-[75%]'>
+                            <div className='flex flex-row gap-6 w-full md:w-[75%]'>
                                 <InputWLabel label="Имя" plc="Имя" />
                                 <InputWLabel label="Фамилия" plc="Фамилия" />
                             </div>
@@ -21,7 +21,7 @@ const Profile = () => {
 
                         <form action="" className='flex flex-col items-start gap-5 w-full'>
                             <h1 className='text-lg lg:text-4xl font-medium'>Эл. почта</h1>
-                            <div className='flex flex-row gap-6 w-[75%]'>
+                            <div className='flex flex-row gap-6 w-full md:w-[75%]'>
                                 <InputWLabel label="Эл.почта" plc="Эл.почта" />
                                 <InputWLabel label="Пароль" plc="Пароль" />
                             </div>
@@ -30,8 +30,8 @@ const Profile = () => {
 
                         <form action="" className='flex flex-col items-start gap-5 w-full'>
                             <h1 className='text-lg lg:text-4xl font-medium'>Пароль</h1>
-                            <Input placeholder="Текущий пароль" type='password' className='w-[75%]'/>
-                            <div className='flex flex-row gap-6 w-[75%]'>
+                            <Input placeholder="Текущий пароль" type='password' className='w-full md:w-[75%]'/>
+                            <div className='flex flex-row gap-6 w-full md:w-[75%]'>
                                 <Input placeholder="Новый пароль" type='password'/>
                                 <Input placeholder="Подтверждение пароля" type='password'/>
                             </div>
