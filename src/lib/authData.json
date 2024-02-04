@@ -1,0 +1,15 @@
+{
+    "id":0,
+    "role":"text",
+    "avatar_url":"text",
+    "company_id":0,
+    "telegram_id":"text",
+    "is_company_super_admin":false,
+    "login":"text",
+    "name":"text",
+    "role_id":0.1,
+    "access":false,
+    "is_deletable":false,
+    "password_hash":"text",
+    "phone":"text"
+}

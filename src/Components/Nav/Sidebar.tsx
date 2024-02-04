@@ -1,16 +1,13 @@
 import { cn } from '@/lib/utils'
 import Logo from '../../assets/Logo.png'
-import home from '../../assets/home.png'
-import lock from '../../assets/lock.png'
-import key from '../../assets/key.png'
-import box from '../../assets/box.png'
-import exit from '../../assets/exit.png'
 import { Link } from 'react-router-dom';
 import { Button } from '@/Components/UI/button';
+import menu from '@/assets/menu.svg';
 
 interface SidebarProps {
   sideBar: boolean;
   setSideBar: (value: boolean) => void;
+  sidebarRoutes: sidebarRoutes[]
 }
 
 interface sidebarRoutes {
@@ -19,15 +16,7 @@ interface sidebarRoutes {
   name: string;
 }
 
-const Sidebar = ({ sideBar, setSideBar }: SidebarProps) => {
-
-  const sidebarRoutes: sidebarRoutes[] = [
-    { route: '/', img: home, name: 'Главная' },
-    { route: '/profile', img: lock, name: 'Аккаунт' },
-    { route: '/profile/apiKey', img: key, name: 'Ключи API' },
-    { route: '/profile/balance', img: box, name: 'Биллинг' },
-    { route: '/exit', img: exit, name: 'Выход' },
-  ]
+const Sidebar = ({ sideBar, setSideBar, sidebarRoutes }: SidebarProps) => {
 
   const downRoutes: sidebarRoutes[] = [
     { route: '/docs', name: 'Документация' },
@@ -41,7 +30,7 @@ const Sidebar = ({ sideBar, setSideBar }: SidebarProps) => {
       <Button variant="ghost" className="fixed lg:hidden z-[31]"
         onClick={() => setSideBar(!sideBar)}
       >
-        <img src={lock} alt="menu" />
+        <img src={menu} alt="menu" width={24}/>
       </Button>
       <div className={cn(
         'max-w-[70%] h-full flex flex-col justify-between items-start gap-4 px-3 py-6 z-30 bg-secondaryA border-r-2 border-secondaryB',
@@ -60,7 +49,7 @@ const Sidebar = ({ sideBar, setSideBar }: SidebarProps) => {
 
         </div>
 
-        <div className='flex w-full flex-col items-start pt-3 pb-1 pl-1 gap-2 border-t-[1px] border-gray-400/60 text-nowrap'>
+        <div className='flex w-full flex-col items-start pt-3 pb-1 pl-1 gap-2 border-t-[1px] border-gray-400/60 text-wrap md:text-nowrap'>
           {downRoutes.map((route) =>
             <Link to={route.route} className='font-medium text-lg'>{route.name}</Link>
           )}

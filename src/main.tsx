@@ -4,17 +4,17 @@ import App from './App.tsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import AuthProvider from 'react-auth-kit/AuthProvider'
-import createStore from 'react-auth-kit/createStore'; 
+import createStore from 'react-auth-kit/createStore';
 
 interface IUserData {
+  login: string;
   name: string;
-  surName: string;
   email: string;
- };
+};
 
 const store = createStore<IUserData>({
-  authName:'_auth',
-  authType:'cookie',
+  authName: '_auth',
+  authType: 'cookie',
   cookieDomain: window.location.hostname,
   cookieSecure: window.location.protocol === 'https:'
 });

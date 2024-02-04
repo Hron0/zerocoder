@@ -2,50 +2,57 @@ import { Button } from '@/Components/UI/button'
 import { Input } from '@/Components/UI/input'
 import Logo from '@/assets/Logo.png'
 import { FormEvent, useState } from 'react';
-import useSignIn from 'react-auth-kit/hooks/useSignIn';
+/* import useSignIn from 'react-auth-kit/hooks/useSignIn'; */
+import { Link } from 'react-router-dom';
 import { z } from 'zod';
 
-interface IUserData {
+/* interface IUserData {
   name: string;
   surName: string;
   email: string;
- };
+}; */
 
 const Login = () => {
-  const [login, setLogin] = useState({ email: "", password: "" })
-  const [error, setError] = useState({ email: '', password : ''})
-  const signIn = useSignIn<IUserData>()
+  const [login, setLogin] = useState({ login: "", password: "" })
+  const [error, setError] = useState({ login: '', password: '' })
+  /* const signIn = useSignIn<IUserData>() */
 
+  const Bearer = import.meta.env.VITE_BEARER
   const LoginDataSchema = z.object({
-    email: z.string().email({ message: 'Введите валидную почту' }),
+    login: z.string({ invalid_type_error: "Введите логин", }),
     password: z.string().min(3, { message: 'Пароль должен быть длиннее 3 символов.' })
   })
 
   const handleLogin = async (e: FormEvent) => {
-    setError({email: '', password : ''})
+    setError({ login: '', password: '' })
     e.preventDefault()
     try {
       const validatedData = LoginDataSchema.safeParse({
-        email: login.email,
+        login: login.login,
         password: login.password
       })
 
       if (!validatedData.success) {
-        return setError(validatedData.error.flatten().fieldErrors);
+        const ErrFields = validatedData.error.flatten().fieldErrors
+        const errorState = {
+          login: Array.isArray(ErrFields?.login) ? ErrFields.login[0] : '',
+          password: Array.isArray(ErrFields?.password) ? ErrFields.password[0] : '',
+        };
+        return setError(errorState);
         /* console.log(error.password[0]); */
-      }  
+      }
 
-      const response = await fetch('https://api.zerocoder.pw/user/create', {
+      const response = await fetch('https://api.zerocoder.pw/user/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${Bearer}`
         },
         body: JSON.stringify(validatedData.data),
       });
 
       console.log(response)
 
-/*       signIn({
+      /* signIn({
         auth: {
           token: response.data.jwt
         },
@@ -57,7 +64,7 @@ const Login = () => {
       }) */
 
     } catch (err: any) {
-      setError({...login, password: err})
+      setError({ ...login, password: err })
     }
 
 
@@ -69,11 +76,11 @@ const Login = () => {
         <img src={Logo} alt="Логотип" width={150} />
         <h2 className='text-lg lg:text-3xl font-medium self-start'>Вход</h2>
         <form onSubmit={handleLogin} className='flex flex-col gap-2 w-full'>
-          <Input placeholder='Эл. почта' type='email' value={login.email} onChange={e => setLogin({ ...login, email: e.target.value })} />
+          <Input placeholder='Логин' type='name' value={login.login} onChange={e => setLogin({ ...login, login: e.target.value })} />
           <Input placeholder='Пароль' type='password' value={login.password} onChange={e => setLogin({ ...login, password: e.target.value })} />
           {error?.password ?
             <span className='text-md text-red-600'>{error.password[0]}</span>
-          : null
+            : null
           }
           <a href="" className='self-start pl-2'>Забыли пароль?</a>
 
@@ -81,7 +88,7 @@ const Login = () => {
         </form>
 
         <h3 className='text-md lg:text-lg font-medium mt-3'>
-          Нет аккаунта? <a href='' className='text-destructive underline underline-offset-2'>Регистрация</a>
+          Нет аккаунта? <Link to={'/auth/register'} className='text-destructive underline underline-offset-2'>Регистрация</Link>
         </h3>
       </div>
     </div>

@@ -8,16 +8,25 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@/Components/UI/sheet'
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 
 interface RawRoutes {
   route: string,
   name: string;
 }
 
+interface IUserData {
+  login: string;
+  name: string;
+  email: string;
+ };
 
 const Header = () => {
   const location = useLocation()
   const { width } = useWindowDimensions()
+  const isAuth = useIsAuthenticated()
+  const authData = useAuthUser<IUserData>()
 
   const RawRoutes: RawRoutes[] = [
     { route: '/', name: 'Главная', },
@@ -44,21 +53,24 @@ const Header = () => {
               )} >{data.name}</Link>
             )}
           </nav>
-
-          <Link to={"/auth/login"}
-            className='inline-flex gap-2 items-center justify-center whitespace-nowrap text-sm 
+          {isAuth() ?
+            <Link to={"/profile"}
+              className='inline-flex text-sm text-black'>{authData?.login}</Link>
+            :
+            <Link to={"/auth/login"}
+              className='inline-flex gap-2 items-center justify-center whitespace-nowrap text-sm 
           ring-offset-background transition-colors focus-visible:outline-none 
           focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none 
           disabled:opacity-50 h-10 px-4 py-2
           bg-destructive text-destructive-foreground hover:bg-green-500/50 rounded-sm font-semibold'
-          >Вход</Link> {/* Lol */}
+            >Вход</Link>} {/* Lol */}
         </div>
         :
         <div className='flex self-start'>
           <Sheet>
             <SheetTrigger>
               <Button variant="ghost" className="z-[31]">
-                <img src={menu} alt="menu" width={25}/>
+                <img src={menu} alt="menu" width={25} />
               </Button>
             </SheetTrigger>
             <SheetContent side='left'>
