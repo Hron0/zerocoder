@@ -32,6 +32,7 @@ module.exports = {
         'primaryW': "#FFFFFF",
         'secondaryA': '#FCFCFC',
         'secondaryB': "#F1F1F1",
+        'secondaryC': "#dcdcdc",
         'footerbg': '#111827',
         'navhover': '#4CEF8E',
         'footerTxt': '#6B7280',
