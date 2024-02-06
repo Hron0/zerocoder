@@ -40,8 +40,8 @@ const Sidebar = ({ sideBar, setSideBar, sidebarRoutes }: SidebarProps) => {
         <div className='flex flex-col items-start h-[20%] pt-6 lg:pt-3 pl-1 w-full'>
           <img src={Logo} alt="Logo" className='pb-3' width={120} />
 
-          {sidebarRoutes.map((data) =>
-            <Link to={data.route} className='flex items-center gap-4 hover:bg-[#f1f1f1] py-3 pl-3 pr-16 rounded-xl'>
+          {sidebarRoutes.map((data, index) =>
+            <Link to={data.route} className='flex items-center gap-4 hover:bg-[#f1f1f1] py-3 pl-3 pr-16 rounded-xl' key={index+1}>
               <img src={data.img} alt={`${data.name}`} className='w-6 h-6' />
               <span className='text-lg lg:text-xl font-medium'>{data.name}</span>
             </Link>
