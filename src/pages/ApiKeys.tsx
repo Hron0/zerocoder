@@ -11,8 +11,50 @@ import {
 import { ScrollArea, ScrollBar } from '@/Components/UI/scroll-area'
 import ProfileLayout from '@/Components/Layouts/ProfileLayout'
 import ApiKeyDialog from './../Components/UI/ApiKeyDialog';
+import { FormEvent, useEffect, useState } from 'react'
+import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
+import { KeySlicer } from '@/lib/slicer'
 
 const ApiKeys = () => {
+    const [apiKeys, setApiKeys] = useState({key: 'sk-...123', date:'24.01.2023', lastCall: false})
+    const [genApiKey, setGenApiKey] = useState('')
+
+    const generateApiKey = async (e: FormEvent) => {
+        e.preventDefault()
+        const authJWT = useAuthHeader()
+
+        await fetch('https://api.zerocoder.pw/keys/create', {
+            method: 'POST',
+            headers: {
+                'Authorization': `${authJWT}`
+            }
+        }).then((res) => res.json())
+            .then((res) => {
+                setGenApiKey(res.data.access_token)
+            })
+            .catch((err) => console.log(err))
+    }
+
+    /* Пока хз, тот ли АПИ для показа всех ключей пользователя */
+    const fetchKeys = async () => {
+        const authJWT = useAuthHeader()
+
+        await fetch('https://api.zerocoder.pw/keys/get', {
+            method: 'POST',
+            headers: {
+                'Authorization': `${authJWT}`
+            }
+        }).then((res) => res.json())
+            .then((res) => {
+                let slicedKey = KeySlicer(res.data.access_token)
+                setApiKeys({...apiKeys, key: slicedKey})
+            })
+            .catch((err) => console.log(err))
+    }
+
+    useEffect(() => {
+        fetchKeys()
+    }, [genApiKey])
     return (
         <>
             <ProfileLayout>
@@ -39,6 +81,7 @@ const ApiKeys = () => {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
+                                        {/* Пока не буду делать вывод, ещё и функц удаления надо  */}
                                         <TableRow>
                                             <TableCell className="font-medium">sk-..123</TableCell>
                                             <TableCell>24.01.2222</TableCell>
@@ -51,7 +94,7 @@ const ApiKeys = () => {
                             <ScrollBar orientation="horizontal" />
                         </ScrollArea>
 
-                        <ApiKeyDialog />
+                        <ApiKeyDialog generateKey={generateApiKey} ApiKey={genApiKey} />
 
                         <h4 className='text-md lg:text-xl font-normal'>
                             <Badge className='mr-3'>ВАЖНО!</Badge>
