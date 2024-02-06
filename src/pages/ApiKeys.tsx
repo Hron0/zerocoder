@@ -13,10 +13,10 @@ import ProfileLayout from '@/Components/Layouts/ProfileLayout'
 import ApiKeyDialog from './../Components/UI/ApiKeyDialog';
 import { FormEvent, useEffect, useState } from 'react'
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
-import { KeySlicer } from '@/lib/slicer'
+import { KeySlicer, formatDate } from '@/lib/KeysUtils'
 
 const ApiKeys = () => {
-    const [apiKeys, setApiKeys] = useState({key: 'sk-...123', date:'24.01.2023', lastCall: false})
+    const [apiKeys, setApiKeys] = useState([{key: 'sk-...123', date:'24.01.2023', lastCall: 'Никогда', id: 123}])
     const [genApiKey, setGenApiKey] = useState('')
 
     const generateApiKey = async (e: FormEvent) => {
@@ -47,9 +47,31 @@ const ApiKeys = () => {
         }).then((res) => res.json())
             .then((res) => {
                 let slicedKey = KeySlicer(res.data.access_token)
-                setApiKeys({...apiKeys, key: slicedKey})
+                let date = formatDate(res.data.create_at)
+                setApiKeys({
+                    key: slicedKey,
+                    date: date,
+                    lastCall: 'Никогда',
+                    id: res.data.id
+                })
             })
             .catch((err) => console.log(err))
+    }
+
+    const deleteApiKey = async (keyId: number) => {
+        const authJWT = useAuthHeader()
+
+        await fetch('https://api.zerocoder.pw/keys/delete', {
+            method: 'POST',
+            headers: {
+                'Authorization': `${authJWT}`
+            },
+            body: JSON.stringify({id: keyId})
+        })
+        .then(() => {
+            const newApiKeys = apiKeys.filter(key => key.id !== keyId)
+            setApiKeys(newApiKeys)
+        })
     }
 
     useEffect(() => {
