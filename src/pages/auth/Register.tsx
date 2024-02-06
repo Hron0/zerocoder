@@ -5,11 +5,6 @@ import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
-interface IUserData {
-  name: string;
-  surName: string;
-  email: string;
-};
 
 const Register = () => {
   const [reg, setLogin] = useState({ login: "", password: "" })
@@ -42,14 +37,14 @@ const Register = () => {
         return console.log(error);
       }
 
-      /*TODO: Разобраться с апи, по сути лишь адрес поменять и всё будет работать */
       await fetch('https://api.zerocoder.pw/company/create', {
         method: 'POST',
         headers: {
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
         },
         body: JSON.stringify(validatedData.data),
-      }).then(() => {
+      }).then((res) => {
+        console.log(res)
         alert("Вы успешно зарегестрировались, теперь войдите в ваш аккаунт.")
         setTimeout(() => {navigate("/auth/login"), 4000})})
       .catch((err) => {console.log(`Fetch error: -${err}`)})

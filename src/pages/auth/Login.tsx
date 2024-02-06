@@ -2,22 +2,21 @@ import { Button } from '@/Components/UI/button'
 import { Input } from '@/Components/UI/input'
 import Logo from '@/assets/Logo.png'
 import { FormEvent, useState } from 'react';
-/* import useSignIn from 'react-auth-kit/hooks/useSignIn'; */
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import { Link } from 'react-router-dom';
 import { z } from 'zod';
 
-/* interface IUserData {
+interface IUserData {
   name: string;
   surName: string;
   email: string;
-}; */
+};
 
 const Login = () => {
   const [login, setLogin] = useState({ login: "", password: "" })
   const [error, setError] = useState({ login: '', password: '' })
-  /* const signIn = useSignIn<IUserData>() */
+  const signIn = useSignIn<IUserData>()
 
-  const Bearer = import.meta.env.VITE_BEARER
   const LoginDataSchema = z.object({
     login: z.string({ invalid_type_error: "Введите логин", }),
     password: z.string().min(3, { message: 'Пароль должен быть длиннее 3 символов.' })
@@ -39,35 +38,30 @@ const Login = () => {
           password: Array.isArray(ErrFields?.password) ? ErrFields.password[0] : '',
         };
         return setError(errorState);
-        /* console.log(error.password[0]); */
       }
 
-      const response = await fetch('https://api.zerocoder.pw/user/login', {
+      await fetch('https://api.zerocoder.pw/user/login', {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${Bearer}`
-        },
         body: JSON.stringify(validatedData.data),
-      });
+      }).then((res) => res.json())
+        .then((response) => {
+          console.log(response)
 
-      console.log(response)
-
-      /* signIn({
-        auth: {
-          token: response.data.jwt
-        },
-        userState: {
-          name: response.data.name,
-          surName: response.data.surName,
-          email: response.data.email,
-        }
-      }) */
+          signIn({
+            auth: {
+              token: response.data.jwt
+            },
+            userState: {
+              name: response.data.name,
+              surName: response.data.surName,
+              email: response.data.email,
+            }
+          })
+        }).catch((err) => console.log(err))
 
     } catch (err: any) {
-      setError({ ...login, password: err })
+      console.log(`Fetch error: -${err}`)
     }
-
-
   }
 
   return (
@@ -79,7 +73,7 @@ const Login = () => {
           <Input placeholder='Логин' type='name' value={login.login} onChange={e => setLogin({ ...login, login: e.target.value })} />
           <Input placeholder='Пароль' type='password' value={login.password} onChange={e => setLogin({ ...login, password: e.target.value })} />
           {error?.password ?
-            <span className='text-md text-red-600'>{error.password[0]}</span>
+            <span className='text-md text-red-600'>{error.password}</span>
             : null
           }
           <a href="" className='self-start pl-2'>Забыли пароль?</a>
