@@ -42,6 +42,7 @@ const Register = () => {
         return console.log(error);
       }
 
+      /*TODO: Разобраться с апи, по сути лишь адрес поменять и всё будет работать */
       await fetch('https://api.zerocoder.pw/company/create', {
         method: 'POST',
         headers: {
