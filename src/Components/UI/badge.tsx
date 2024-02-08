@@ -15,6 +15,10 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
+        US: "bg-[#D1E2FF] rounded-full",
+        Singapore: "bg-[#CFF5D1] rounded-full",
+        cybersecurity: "bg-[#7EFFB2] rounded-full",
+        software: "bg-[#CFF5D1] rounded-full",
       },
     },
     defaultVariants: {

@@ -104,7 +104,7 @@ const Rates = () => {
                 {otherRows.map((data) =>
                   <TableRow className="border-none">
                     <TableCell></TableCell>
-                    <TableCell className='align-top text-lg'>{data.model}</TableCell>
+                    <TableCell className='align-top text-xl'>{data.model}</TableCell>
 
                     <TableCell>
                       <div>
