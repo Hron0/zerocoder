@@ -43,7 +43,7 @@ const Sidebar = ({ sideBar, setSideBar, sidebarRoutes }: SidebarProps) => {
           {sidebarRoutes.map((data, index) =>
             <Link to={data.route} className='flex items-center gap-4 hover:bg-[#f1f1f1] py-3 pl-3 pr-16 rounded-xl' key={index+1}>
               <img src={data.img} alt={`${data.name}`} className='w-6 h-6' />
-              <span className='text-lg lg:text-xl font-medium'>{data.name}</span>
+              <span className='text-h5'>{data.name}</span>
             </Link>
           )}
 
@@ -51,7 +51,7 @@ const Sidebar = ({ sideBar, setSideBar, sidebarRoutes }: SidebarProps) => {
 
         <div className='flex w-full flex-col items-start pt-3 pb-1 pl-1 gap-2 border-t-[1px] border-gray-400/60 text-wrap md:text-nowrap'>
           {downRoutes.map((route) =>
-            <Link to={route.route} className='font-medium text-lg'>{route.name}</Link>
+            <Link to={route.route} className='font-medium text-h5'>{route.name}</Link>
           )}
         </div>
       </div>

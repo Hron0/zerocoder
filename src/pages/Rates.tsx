@@ -49,10 +49,10 @@ const Rates = () => {
   return (
     <>
       <MainLayout>
-        <h2 className='text-xl lg:text-5xl font-medium'>Тарифы</h2>
-        <h3 className='text-lg lg:text-3xl font-medium'>Простые и понятные цены: платите только за то, что использовали.
+        <h2 className='text-h1 font-medium'>Тарифы</h2>
+        <h3 className='text-h2'>Простые и понятные цены: платите только за то, что использовали.
           Без подписок и скрытых платежей.</h3>
-        <h4 className='text-md md:text-lg'>Цены указаны за 1 000 "токенов" (для языковых моделей). Токен - это часть слова или знак препинания, которые генерирует или распознает
+        <h4 className='text-h4'>Цены указаны за 1 000 "токенов" (для языковых моделей). Токен - это часть слова или знак препинания, которые генерирует или распознает
           языковая модель. Когда модель работает с текстом на кириллице, то каждый токен состоит из 1-2 букв, на латиннице расход токенов несколько
           меньше - один токен это примерно 2-3 буквы. Цены на "входящие" (то, что вы отправляете в модель) и "исходящие" (то, что модель возвращает)
           токены отличаются.</h4>
@@ -60,58 +60,58 @@ const Rates = () => {
         <ScrollArea className='w-full'>
           <div>
             <Table className='w-full'>
-              <TableCaption className='border-t pt-2 text-left italic'>Тарифы пересматриваются не реже одного раза в месяц и могут быть изменены в случае существенного изменения цен от провайдера или изменения курса валют.
+              <TableCaption className='border-t pt-2 text-left text-h5 italic'>Тарифы пересматриваются не реже одного раза в месяц и могут быть изменены в случае существенного изменения цен от провайдера или изменения курса валют.
                 Всех наших клиентов о любых изменениях тарифов мы оповещаем заранее.</TableCaption>
               <TableHeader>
                 <TableRow>
-                  <TableHead className='font-bold text-black text-xl'>Провайдер</TableHead>
-                  <TableHead className='font-bold text-black text-xl w-[46%] pr-20 sm:pr-[auto]'>Модель</TableHead>
-                  <TableHead className='font-bold text-black text-xl w-[22%]'>Исходящие</TableHead>
-                  <TableHead className='font-bold text-black text-xl w-[22%]'>Входящие</TableHead>
+                  <TableHead className='font-bold text-black text-h5'>Провайдер</TableHead>
+                  <TableHead className='font-bold text-black text-h5 w-[46%] pr-20 sm:pr-[auto]'>Модель</TableHead>
+                  <TableHead className='font-bold text-black text-h5 w-[22%]'>Исходящие</TableHead>
+                  <TableHead className='font-bold text-black text-h5 w-[22%]'>Входящие</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {tableRows.map((data) =>
-                  <TableRow className="border-none">
-                    <TableCell className='text-xl align-top font-bold'>{data.provider}</TableCell>
+                {tableRows.map((data, i) =>
+                  <TableRow className="border-none" key={i}>
+                    <TableCell className='text-h3 align-top'>{data.provider}</TableCell>
                     {data.model ?
                       <TableCell>
                         <div className='flex flex-col items-start'>
-                          <p className='text-lg'>{data.model}</p>
+                          <p className='text-h4'>{data.model}</p>
                           {data.modelT ?
-                            <span className='text-gray-400'>{data.modelT}</span>
+                            <span className='text-gray-400 text-h4'>{data.modelT}</span>
                             : null
                           }
                         </div>
                       </TableCell> : null}
                     {data.inc ?
-                      data.out ? <TableCell>{data.inc} <span className='text-gray-400'>{data.incT}</span></TableCell>
-                        : <TableCell colSpan={2}>{data.inc} <span className='text-gray-400'>{data.incT}</span></TableCell>
+                      data.out ? <TableCell className='text-h4'>{data.inc} <span className='text-gray-400 text-h4'>{data.incT}</span></TableCell>
+                        : <TableCell colSpan={2} className='text-h4'>{data.inc} <span className='text-gray-400 text-h4'>{data.incT}</span></TableCell>
                       : null}
 
-                    {data.out ? <TableCell>{data.out} <span className='text-gray-400'>{data.outT}</span></TableCell> : null}
+                    {data.out ? <TableCell className='text-h4'>{data.out} <span className='text-gray-400 text-h4'>{data.outT}</span></TableCell> : null}
 
-                    {data.tollTip ? <TableCell colSpan={3} className='text-gray-400'>{data.tollTip}</TableCell> : null}
+                    {data.tollTip ? <TableCell colSpan={3} className='text-gray-400 text-h7'>{data.tollTip}</TableCell> : null}
                   </TableRow>
                 )}
 
                 <TableRow className="border-none">
                   <TableCell></TableCell>
                   <TableCell></TableCell>
-                  <TableCell className='font-bold text-black text-xl'>Разрешение</TableCell>
-                  <TableCell className='font-bold text-black text-xl'>Стоимость</TableCell>
+                  <TableCell className='font-bold text-black text-h4'>Разрешение</TableCell>
+                  <TableCell className='font-bold text-black text-h4'>Стоимость</TableCell>
                 </TableRow>
                 {otherRows.map((data) =>
                   <TableRow className="border-none">
                     <TableCell></TableCell>
-                    <TableCell className='align-top text-xl'>{data.model}</TableCell>
+                    <TableCell className='align-top text-[18px]'>{data.model}</TableCell>
 
                     <TableCell>
                       <div>
                         {data.res.map((res) =>
-                          <div className='flex gap-1'>
+                          <div className='flex gap-1 text-h4'>
                             {res}
-                            <span className='text-gray-400'>{data.resT}</span>
+                            <span className='text-gray-400 text-h4'>{data.resT}</span>
                           </div>
                         )}
                       </div>
@@ -120,9 +120,9 @@ const Rates = () => {
                     <TableCell>
                       <div>
                         {data.price.map((pr) =>
-                          <div className='flex gap-1 text-nowrap'>
+                          <div className='flex gap-1 text-nowrap text-h4'>
                             <p>{pr}</p>
-                            <span className='text-gray-400'>{data.priceT}</span>
+                            <span className='text-gray-400 text-h4'>{data.priceT}</span>
                           </div>
                         )}
                       </div>
@@ -135,10 +135,10 @@ const Rates = () => {
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
-        <h3 className='text-lg lg:text-3xl font-medium'>Большие объемы? Нет проблем!</h3>
+        <h3 className='text-h2'>Большие объемы? Нет проблем!</h3>
         <div className='flex flex-col'>
-          <h4 className='text-md md:text-lg'>Для крупных клиентов с большими объемами потребления мы предоставляем скидки и индивидуальные условия.</h4>
-          <h4 className='text-md md:text-lg'><a href="" className='underline underline-offset-2'>Нажмите здесь</a>, если интересуют подробности.</h4>
+          <h4 className='text-h4'>Для крупных клиентов с большими объемами потребления мы предоставляем скидки и индивидуальные условия.</h4>
+          <h4 className='text-h4'><a href="" className='underline underline-offset-2'>Нажмите здесь</a>, если интересуют подробности.</h4>
         </div>
         
       </MainLayout>

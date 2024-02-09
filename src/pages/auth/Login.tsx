@@ -68,20 +68,20 @@ const Login = () => {
     <div className='w-full h-screen flex items-center justify-center bg-white  '>
       <div className='flex flex-col items-center gap-6 bg-secondaryB w-full md:w-[60%] xl:w-[20%] rounded-md max-h-[70%] px-4 py-5'>
         <img src={Logo} alt="Логотип" width={150} />
-        <h2 className='text-lg lg:text-3xl font-medium self-start'>Вход</h2>
+        <h2 className='text-h1 self-start'>Вход</h2>
         <form onSubmit={handleLogin} className='flex flex-col gap-2 w-full'>
-          <Input placeholder='Логин' type='name' value={login.login} onChange={e => setLogin({ ...login, login: e.target.value })} />
-          <Input placeholder='Пароль' type='password' value={login.password} onChange={e => setLogin({ ...login, password: e.target.value })} />
+          <Input placeholder='Логин' type='name' value={login.login} onChange={e => setLogin({ ...login, login: e.target.value })} className='text-h5'/>
+          <Input placeholder='Пароль' type='password' value={login.password} onChange={e => setLogin({ ...login, password: e.target.value })} className='text-h5'/>
           {error?.password ?
             <span className='text-md text-red-600'>{error.password}</span>
             : null
           }
-          <a href="" className='self-start pl-2'>Забыли пароль?</a>
+          <a href="" className='self-start pl-2 text-h5'>Забыли пароль?</a>
 
           <Button variant="destructive" className='mt-8' type='submit'>Войти</Button>
         </form>
 
-        <h3 className='text-md lg:text-lg font-medium mt-3'>
+        <h3 className='text-h5 mt-3'>
           Нет аккаунта? <Link to={'/auth/register'} className='text-destructive underline underline-offset-2'>Регистрация</Link>
         </h3>
       </div>

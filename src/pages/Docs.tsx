@@ -49,30 +49,30 @@ const Docs = () => {
   return (
     <>
       <MainLayout>
-        <h2 className='text-xl lg:text-5xl font-medium'>Документация</h2>
-        <h3 className='text-lg lg:text-3xl font-medium'>Что такое ProxyAPI</h3>
-        <h4 className='text-md md:text-lg'>ProxyAPI предоставляет доступ к API иностранных сервисов. В случаях, когда это возможно мы сохраняем оригинальные методы и параметры. Это
+        <h2 className='text-h1'>Документация</h2>
+        <h3 className='text-h2'>Что такое ProxyAPI</h3>
+        <h4 className='text-h4'>ProxyAPI предоставляет доступ к API иностранных сервисов. В случаях, когда это возможно мы сохраняем оригинальные методы и параметры. Это
           делает возможным пользоваться официальной документацией и библиотеками.</h4>
-        <h3 className='text-lg lg:text-3xl font-medium mt-3'>Доступные провайдеры и модели</h3>
+        <h3 className='text-h2 mt-3'>Доступные провайдеры и модели</h3>
 
         <ScrollArea className='w-full'>
           <div>
             <Table className='w-full'>
               <TableHeader>
                 <TableRow>
-                  <TableHead className='font-bold text-black text-xl'>Провайдер</TableHead>
-                  <TableHead className='font-bold text-black text-xl w-[80%] pr-[8rem] sm:pr-[auto]'>Модель</TableHead>
-                  <TableHead className='font-bold text-black text-xl w-[10%]'>Поддержка</TableHead>
+                  <TableHead className='font-bold text-black text-h4'>Провайдер</TableHead>
+                  <TableHead className='font-bold text-black text-h4 w-[80%] pr-[8rem] sm:pr-[auto]'>Модель</TableHead>
+                  <TableHead className='font-bold text-black text-h4 w-[10%]'>Поддержка</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {providers.map((data) =>
                   <TableRow className='border-none'>
-                    <TableCell className='text-xl align-top font-bold'>{data.provider}</TableCell>
+                    <TableCell className='text-h3 align-top'>{data.provider}</TableCell>
 
                     {data.dev ?
                       <TableCell>
-                        <p className='text-gray-400 italic'>В разработке</p>
+                        <p className='text-gray-400 italic text-h5'>В разработке</p>
                       </TableCell>
                       : null}
 
@@ -80,14 +80,14 @@ const Docs = () => {
                       <TableCell>
                         <div className='flex flex-col items-start gap-2'>
                           <p className='text-lg'>{data.model}</p>
-                          <span className='text-gray-400'>{data.modelT}</span>
+                          <span className='text-gray-400 text-h7'>{data.modelT}</span>
                           {data.modelTT ?
-                            <span className='text-gray-400'>{data.modelTT}</span>
+                            <span className='text-gray-400 text-h7'>{data.modelTT}</span>
                             : null}
                         </div>
                       </TableCell>
                       :
-                      <TableCell className='text-lg'>{data.model}</TableCell>}
+                      <TableCell className='text-h5'>{data.model}</TableCell>}
 
                     <TableCell className='flex justify-center'>
                       <img src={data.img} alt="" className='pr-3 md:pr-10' />
@@ -100,23 +100,23 @@ const Docs = () => {
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
-        <h3 className='text-lg lg:text-3xl font-medium mt-3'>Доступные провайдеры и модели</h3>
+        <h3 className='text-h2 mt-3'>Доступные методы</h3>
 
         <ScrollArea className='w-full'>
           <div>
             <Table className='w-full'>
               <TableHeader>
                 <TableRow>
-                  <TableHead className='font-bold text-black text-xl w-[20%]'>Провайдер</TableHead>
-                  <TableHead className='font-bold text-black text-xl w-[70%] pr-[8rem] sm:pr-[auto]'>Метод</TableHead>
-                  <TableHead className='font-bold text-black text-xl w-[10%]'>Поддержка</TableHead>
+                  <TableHead className='font-bold text-black text-h4 w-[20%]'>Провайдер</TableHead>
+                  <TableHead className='font-bold text-black text-h4 w-[70%] pr-[8rem] sm:pr-[auto]'>Метод</TableHead>
+                  <TableHead className='font-bold text-black text-h4 w-[10%]'>Поддержка</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {methods.map((data) =>
                   <TableRow>
-                    <TableCell className='text-xl align-top font-bold'>{data.provider}</TableCell>
-                    <TableCell className='text-md'>{data.method}</TableCell>
+                    <TableCell className='text-h3 align-top'>{data.provider}</TableCell>
+                    <TableCell className='text-h6'>{data.method}</TableCell>
                     <TableCell className='flex justify-center'>
                       <img src={data.img} alt="" className='pr-3 md:pr-10' />
                     </TableCell>
@@ -128,12 +128,12 @@ const Docs = () => {
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
 
-        <h3 className='text-lg lg:text-3xl font-medium mt-3'>Ключ API</h3>
-        <h4 className='text-md md:text-lg'>Для использования ProxyAPI необходимо получить ключ API. Для этого необходимо <a href='' className='underline underline-offset-2'>зарегистрироваться</a> на сайте и перейти в раздел "Ключи API".
+        <h3 className='text-[22px] mt-3'>Ключ API</h3>
+        <h4 className='text-h4'>Для использования ProxyAPI необходимо получить ключ API. Для этого необходимо <a href='' className='underline underline-offset-2'>зарегистрироваться</a> на сайте и перейти в раздел "Ключи API".
           Обратите внимание, что увидеть ключ целиком можно только один раз, сразу после создания.</h4>
 
-        <h3 className='text-lg lg:text-3xl font-medium mt-3'>Работа с запросами</h3>
-        <h4 className='text-md md:text-lg'>При отправке запроса к ProxyAPI используйте наш адрес вместо адреса оригинального API, добавляя в конце индентификатор провадера в нашей
+        <h3 className='text-[22px] mt-3'>Работа с запросами</h3>
+        <h4 className='text-h4'>При отправке запроса к ProxyAPI используйте наш адрес вместо адреса оригинального API, добавляя в конце индентификатор провадера в нашей
           системе:</h4>
         <div className='w-full'>
           <CopyBlock
@@ -144,7 +144,7 @@ const Docs = () => {
           />
         </div>
 
-        <h4 className='text-md md:text-lg'>В заголовке запроса укажите ключ API:</h4>
+        <h4 className='text-h4'>В заголовке запроса укажите ключ API:</h4>
         <div className='w-full'>
           <CopyBlock
             text={codeExamples.second}
@@ -154,7 +154,7 @@ const Docs = () => {
           />
         </div>
 
-        <h4 className='text-md md:text-lg'>Кроме случаев, о которых мы будем предупреждать дополнительно в этой документации, все методы и параметры запроса остаются такими же, как
+        <h4 className='text-h4'>Кроме случаев, о которых мы будем предупреждать дополнительно в этой документации, все методы и параметры запроса остаются такими же, как
           и в оригинальном API. Например:</h4>
         <div className='w-full'>
           <CopyBlock
@@ -167,7 +167,7 @@ const Docs = () => {
           />
         </div>
 
-        <h4 className='text-md md:text-lg'>Таким же образом можно пользоваться официальными библиотеками. Например OpenAI для Python (пример для версии 1.3.5, последней на момент
+        <h4 className='text-h4'>Таким же образом можно пользоваться официальными библиотеками. Например OpenAI для Python (пример для версии 1.3.5, последней на момент
           написания):</h4>
         <div className='w-full'>
           <CopyBlock
@@ -180,7 +180,7 @@ const Docs = () => {
           />
         </div>
 
-        <h4 className='text-md md:text-lg'>А вот пример генерации изображений с помощью DALL-E 3:</h4>
+        <h4 className='text-h4'>А вот пример генерации изображений с помощью DALL-E 3:</h4>
         <div className='w-full'>
           <CopyBlock
             text={codeExamples.fifth}
@@ -191,7 +191,7 @@ const Docs = () => {
             codeBlock
           />
         </div>
-        <h4 className='text-md md:text-lg italic mb-5'>Замените {'{'}PROXY_API_KEY{'}'} на ваш ключ API.</h4>
+        <h4 className='text-h4 italic mb-5'>Замените {'{'}PROXY_API_KEY{'}'} на ваш ключ API.</h4>
       </MainLayout>
     </>
   )

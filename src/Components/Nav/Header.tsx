@@ -48,7 +48,7 @@ const Header = () => {
           <nav className='flex flex-row gap-4'>
             {headerRoutes.map((data) =>
               <Link to={data.route} className={cn(
-                'h-fit hover:text-navhover hover:underline underline-offset-2 transition-colors',
+                'h-fit hover:text-navhover hover:underline underline-offset-2 transition-colors text-h6',
                 data.highlight && 'text-navhover underline'
               )} >{data.name}</Link>
             )}

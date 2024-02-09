@@ -26,10 +26,10 @@ const BalanceDialog = ({ btn, plc }: propps) => {
                     </DialogTrigger>
                     <DialogContent className="max-w-[80%] lg:max-w-[35%]">
                         <DialogHeader>
-                            <DialogTitle className='border-b-[1px] pb-4'>Пополнение баланса</DialogTitle>
+                            <DialogTitle className='border-b-[1px] pb-4 text-[18px]'>Пополнение баланса</DialogTitle>
                         </DialogHeader>
                         <form action="" className='relative flex flex-col gap-5'>
-                            <Input placeholder='Введите сумму пополнения' className='text-sm md:text-xl'/>
+                            <Input placeholder='Введите сумму пополнения' className='text-h5'/>
                             <div className='w-full flex flex-col items-end gap-4'>
                                 <div className='flex flex-col md:flex-row items-end items- gap-3 md:gap-6'>
                                     <Button variant="destructive" className='rounded-xs'>Перейти к оплате</Button>

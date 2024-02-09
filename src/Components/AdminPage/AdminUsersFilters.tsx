@@ -15,7 +15,7 @@ const AdminUsersFilters = () => {
         <div className="w-full bg-white rounded-t-xl flex flex-row justify-start gap-6 pt-2 border-b-[3px]">
             <Popover > {/* Фильтр */}
                 <PopoverTrigger asChild>
-                    <Button variant="ghost" className="items-start">
+                    <Button variant="ghost" className="items-start text-[13px]">
                         <img src={filtr} alt="" width={20} />
                         Фильтр
                     </Button>
@@ -51,7 +51,7 @@ const AdminUsersFilters = () => {
             </Popover>
             <Popover > {/* Сортировка */}
                 <PopoverTrigger asChild>
-                    <Button variant="ghost" className="items-start">
+                    <Button variant="ghost" className="items-start text-[13px]">
                         <img src={sort} alt="" width={20} />
                         Фильтр
                     </Button>

@@ -59,19 +59,19 @@ const Register = () => {
     <div className='w-full h-screen flex items-center justify-center bg-white  '>
       <div className='flex flex-col items-center gap-6 bg-secondaryB w-full md:w-[60%] xl:w-[20%] rounded-md max-h-[70%] px-4 py-5'>
         <img src={Logo} alt="Логотип" width={150} />
-        <h2 className='text-lg lg:text-3xl font-medium self-start'>Регистрация</h2>
+        <h2 className='text-h1 self-start'>Регистрация</h2>
         <form onSubmit={handleRegister} className='flex flex-col gap-2 w-full'>
-          <Input placeholder='Логин' type='name' value={reg.login} onChange={e => setLogin({ ...reg, login: e.target.value })} />
-          <Input placeholder='Пароль' type='password' value={reg.password} onChange={e => setLogin({ ...reg, password: e.target.value })} />
+          <Input placeholder='Логин' type='name' value={reg.login} onChange={e => setLogin({ ...reg, login: e.target.value })} className='text-h5'/>
+          <Input placeholder='Пароль' type='password' value={reg.password} onChange={e => setLogin({ ...reg, password: e.target.value })} className='text-h5'/>
           {error?.password ?
             <span className='text-md text-red-600'>{error.password}</span>
             : null
           }
 
-          <Button variant="destructive" className='mt-8' type='submit'>Зарегестрироваться</Button>
+          <Button variant="destructive" className='mt-8 text-h5' type='submit'>Зарегестрироваться</Button>
         </form>
 
-        <h3 className='text-md lg:text-lg font-medium mt-3'>
+        <h3 className='text-h5 mt-3'>
           Уже зарегестрированы? <Link to={'/auth/register'} className='text-destructive underline underline-offset-2'>Вход</Link>
         </h3>
       </div>

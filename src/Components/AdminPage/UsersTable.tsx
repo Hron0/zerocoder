@@ -126,8 +126,8 @@ const UsersTable = () => {
                                         <Checkbox />
                                     </div>
                                     <div className='flex flex-row item-center gap-4'>
-                                        <h6 className='text-xs text-gray-400'>Кол-во </h6>
-                                        <span className='text-md'>2</span>
+                                        <h6 className='text-[11px] text-gray-400'>Кол-во </h6>
+                                        <span className='text-[13px]'>2</span>
                                     </div>
                                 </div>
                             </TableCell>
@@ -141,13 +141,13 @@ const UsersTable = () => {
                                     <div className='flex flex-row items-center gap-3'>
                                         <ChevronDown />
                                         <div className='flex flex-col items-start'>
-                                            <span className='text-xs text-gray-400'>Сегмент 1</span>
+                                            <span className='text-[9px] text-gray-400'>Сегмент 1</span>
                                             <Checkbox />
                                         </div>
                                     </div>
                                     <div className='flex flex-row gap-3'>
-                                        <h6 className='text-xs text-gray-400'>Кол-во </h6>
-                                        <h6 className='text-xs'>265</h6>
+                                        <h6 className='text-[11px] text-gray-400'>Кол-во </h6>
+                                        <h6 className='text-[13px]'>265</h6>
                                     </div>
                                     <Button variant="ghost">
                                         <Search />
