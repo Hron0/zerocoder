@@ -18,7 +18,13 @@ module.exports = {
     },
     extend: {
       fontSize:{
-        "smm": "0,875rem"
+        "h1": "33.75px",
+        "h2": "22.69px",
+        "h3": "20px",
+        "h4": "16px",
+        "h5": "14px",
+        "h6": "13.89px",
+        "h7": "12px",
       },
       lineHeight:{
         "sm": ""
